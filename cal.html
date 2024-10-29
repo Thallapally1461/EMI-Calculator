@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-weight: 500;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        padding: 10px 201px;
+        border: 1px solid;
+        background-color: red;
+        color: aliceblue;
+    }
+
+    .box {
+        display: flex;
+        height: 30vh;
+        width: 40.6vw;
+        background-color: blue;
+        border: 1px solid;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+    }
+    .lab{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .inputs{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+
+
+    button {
+        height: 40px;
+        width: 150px;
+        background-color: red;
+
+    }
+
+    .results {
+        display: flex;
+        height: 35vh;
+        width: 40.6vw;
+        flex-direction: column;
+        background-color: blue;
+        border: 1px solid;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .re {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
+        gap: 30px;
+    }
+
+    input {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h2>EMI Calculator</h2>
+    <div class="box">
+        <div class="lab">
+            <label>Loan Amount in Rs :</label>
+            <label>Interest Rate in % p.a. : </label>
+            <label>Period (in months) :</label>
+        </div>
+        <div class="inputs">
+            <input type="number">
+            <input type="number">
+            <input type="number">
+
+        </div>
+    </div>
+    <br>
+    <button onclick="cal(this)">Calculate</button>
+    <br>
+
+    <div class="results">
+        <label>EMI</label>
+        <input type="text" readonly>
+
+        <label>Average Interest</label>
+        <input type="text" readonly>
+
+        <label>Monthly Interest</label>
+
+        <input type="text" readonly>
+    </div>
+
+
+    <script>
+        function cal() {
+            let ref = document.getElementsByTagName("input")
+            let p = parseInt(ref[0].value)
+            let r = parseInt(ref[1].value)
+            let n = parseInt(ref[2].value)
+            let mr = (r / 12) / 100
+            let emi = (p * mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1)
+            let ai = n * emi - p
+            let mi = ai / n
+            document.getElementsByTagName("input")[3].value = emi.toFixed(2)
+            document.getElementsByTagName("input")[4].value = ai.toFixed(2)
+            document.getElementsByTagName("input")[5].value = mi.toFixed(2)
+
+        }
+        cal()
+
+    </script>
+</body>
+
+</html>
