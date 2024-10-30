@@ -1,144 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
+  </head>
+  <style>
     * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-weight: 500;
+      padding: 0;
+      margin: 0;
+      outline: none;
+      box-sizing: border-box;
+      font-weight: 500;
     }
 
     body {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     h2 {
-        padding: 10px 201px;
-        border: 1px solid;
-        background-color: red;
-        color: aliceblue;
+      height: 10vh;
+      width: 40.6vw;
+      border: 1px solid;
+      background-color: red;
+      color: aliceblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .box {
-        display: flex;
-        height: 30vh;
-        width: 40.6vw;
-        background-color: blue;
-        border: 1px solid;
-        justify-content: center;
-        align-items: center;
-        gap: 80px;
+      display: flex;
+      height: 30vh;
+      width: 40.6vw;
+      background-color: blue;
+      border: 1px solid;
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
     }
-    .lab{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    .lab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
-    .inputs{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
-
-
 
     button {
-        height: 40px;
-        width: 150px;
-        background-color: red;
-
+      height: 40px;
+      width: 150px;
+      background-color: red;
     }
 
     .results {
-        display: flex;
-        height: 35vh;
-        width: 40.6vw;
-        flex-direction: column;
-        background-color: blue;
-        border: 1px solid;
-        justify-content: space-around;
-        align-items: center;
+      display: flex;
+      height: 35vh;
+      width: 40.6vw;
+      flex-direction: column;
+      background-color: blue;
+      border: 1px solid;
+      justify-content: space-around;
+      align-items: center;
     }
 
     .re {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-self: center;
-        gap: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-self: center;
+      gap: 30px;
     }
 
     input {
-        text-align: center;
+      text-align: center;
     }
-</style>
+    .con {
+      outline: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 80vh;
+      width: 40.8vw;
+      border: 2px solid;
+    }
+  </style>
 
-<body>
-    <h2>EMI Calculator</h2>
-    <div class="box">
+  <body>
+    <div class="con">
+      <h2>EMI Calculator</h2>
+      <div class="box">
         <div class="lab">
-            <label>Loan Amount in Rs :</label>
-            <label>Interest Rate in % p.a. : </label>
-            <label>Period (in months) :</label>
+          <label>Loan Amount in Rs :</label>
+          <label>Interest Rate in % p.a. : </label>
+          <label>Period (in months) :</label>
         </div>
         <div class="inputs">
-            <input type="number">
-            <input type="number">
-            <input type="number">
-
+          <input type="number" />
+          <input type="number" />
+          <input type="number" />
         </div>
-    </div>
-    <br>
-    <button onclick="cal(this)">Calculate</button>
-    <br>
+      </div>
+      <br />
+      <button onclick="cal(this)">Calculate</button>
+      <br />
 
-    <div class="results">
+      <div class="results">
         <label>EMI</label>
-        <input type="text" readonly>
+        <input type="text" readonly />
 
         <label>Average Interest</label>
-        <input type="text" readonly>
+        <input type="text" readonly />
 
         <label>Monthly Interest</label>
 
-        <input type="text" readonly>
+        <input type="text" readonly />
+      </div>
     </div>
 
-
     <script>
-            document.getElementsByTagName("input")[3].value = 0
-            document.getElementsByTagName("input")[4].value = 0
-            document.getElementsByTagName("input")[5].value = 0
-        function cal() {
-            let ref = document.getElementsByTagName("input")
-            let p = parseInt(ref[0].value)
-            let r = parseInt(ref[1].value)
-            let n = parseInt(ref[2].value)
-            let mr = (r / 12) / 100
-            let emi = (p * mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1)
-            let ai = n * emi - p
-            let mi = ai / n
-            document.getElementsByTagName("input")[3].value = emi.toFixed(2)
-            document.getElementsByTagName("input")[4].value = ai.toFixed(2)
-            document.getElementsByTagName("input")[5].value = mi.toFixed(2)
+      let ref = document.getElementsByTagName("input");
+      document.getElementsByTagName("input")[3].value = "";
+      document.getElementsByTagName("input")[4].value = "";
+      document.getElementsByTagName("input")[5].value = "";
+      function cal() {
+        let p = parseInt(ref[0].value);
+        let r = parseInt(ref[1].value);
+        let n = parseInt(ref[2].value);
 
+        if (isNaN(p)) 
+        {
+          alert("Please enter a valid Loan Amount.");
+          return;
         }
-        cal()
+        else if(p<1000){
+            alert("Please enter a Loan Amount between 1000 and 50000000 rupees");
+          return;
+          
+        } 
+       
+        if (isNaN(r)) 
+        {
+          alert("Please enter a valid Interest Rate.");
+          return;
+        } 
+        else if(r<1)
+        {
+          alert("Please a Interest rate between 1.00 and 99.99");
+          return;
+        }
+        
+        if (isNaN(n) || n <= 0) {
+          alert("Please enter a valid Period (in months).");
+          return;
+        }
+        else if(n<6)
+        {
+          alert("Please enter a Period of Loan between 6 and 360 months");
+          return;
+        }
 
+        let mr = r / 12 / 100;
+        let emi = (p * mr * Math.pow(1 + mr, n)) / (Math.pow(1 + mr, n) - 1);
+        let ai = n * emi - p;
+        let mi = ai / n;
+        document.getElementsByTagName("input")[3].value = emi.toFixed(2);
+        document.getElementsByTagName("input")[4].value = ai.toFixed(2);
+        document.getElementsByTagName("input")[5].value = mi.toFixed(2);
+      }
     </script>
-</body>
-
+  </body>
 </html>
